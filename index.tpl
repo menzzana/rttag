@@ -6,6 +6,8 @@
     <form action="send.py" method="post">
         <h1>Support</h1>
         <hr>
+        Username: <input name="username" type="text" /><br><br>
+        Mail: <input name="mail" type="text" /><br><br>
         <h2>Problem type</h2>
         <select name="problem_type" id="id_problem_type">
           <option value="" selected>(select problem type)</option>
@@ -97,7 +99,7 @@
 
     <h2>Description</h2>
     <textarea class="form-control form-control-sm" name="description" cols="40" rows="10" id="id_description">
-    </textarea>
+    </textarea><br><br>
 
     <input value="Send" type="submit" />
     </form>
