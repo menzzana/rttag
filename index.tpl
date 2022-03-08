@@ -97,6 +97,7 @@
 
     <h2>Description</h2>
     <textarea class="form-control form-control-sm" name="description" cols="40" rows="10" id="id_description">
+    </textarea>
 
     <input value="Send" type="submit" />
     </form>
