@@ -79,6 +79,49 @@
         <option value="r34">_ topolino</option>
       </select>
 
+    <h2>Category</h2>
+    <select id="category_id" name="category_id">
+                    <option value="74">Agricultural science</option>
+                    <option value="75">Agricultural science forestry and fishing</option>
+                    <option value="76">Animal science</option>
+                    <option value="89">Art</option>
+                    <option value="58">Biological sciences</option>
+                    <option value="56">Chemistry</option>
+                    <option value="71">Cinical medicine</option>
+                    <option value="86">Communikation science</option>
+                    <option value="54">Data- and information science)</option>
+                    <option value="80">Economics</option>
+                    <option value="81">Educational science</option>
+                    <option value="60">Electrotechnological science and electronics</option>
+                    <option value="66">Environmental biotechnology</option>
+                    <option value="57">Geosciences</option>
+                    <option value="72">Health science</option>
+                    <option value="87">Humanities</option>
+                    <option value="67">Industrial biotechnology</option>
+                    <option value="83">Law</option>
+                    <option value="63">Material science</option>
+                    <option value="53">Mathematic</option>
+                    <option value="61">Mechanical science</option>
+                    <option value="73">Medical biotechnology</option>
+                    <option value="70">Medical science</option>
+                    <option value="64">Medical technology</option>
+                    <option value="68">Nanotechnology</option>
+                    <option value="65">Natural resources technology</option>
+                    <option value="52">Natural sciences</option>
+                    <option value="69">Other technology</option>
+                    <option value="88">Philosophical ethics and religion</option>
+                    <option value="55">Physics</option>
+                    <option value="84">Political science</option>
+                    <option value="50">Programming language</option>
+                    <option value="79">Psychoology</option>
+                    <option value="85">Social and economic geography</option>
+                    <option value="78">Social science</option>
+                    <option value="82">Sociology</option>
+                    <option value="51">Software</option>
+                    <option value="62">Technological chemistry</option>
+                    <option value="59">Technological science</option>
+                    <option value="77">Veterinary science</option>
+            </select>
     <h2>Project</h2>
       <p>If your problem is related to a specific project, select
         that.
