@@ -6,10 +6,10 @@
     <form action="send.py" method="post">
         <h1>Support</h1>
         <hr>
-        Username: <input name="username" id="id_username" type="text" /><br><br>
-        Mail: <input name="mail" id="id_mail" type="text" /><br><br>
+        Username: <input name="id_username" id="id_username" type="text" /><br><br>
+        Mail: <input name="id_mail" id="id_mail" type="text" /><br><br>
         <h2>Problem type</h2>
-        <select name="problem_type" id="id_problem_type">
+        <select name="id_problem_type" id="id_problem_type">
           <option value="" selected>(select problem type)</option>
           <option value="accessing">Logging in or accessing the system</option>
           <option value="jobs">Running jobs</option>
@@ -30,7 +30,7 @@
          select the centre and mention the resources in the problem
          description below.
       </p>  
-      <select name="centre_resource" id="id_centre_resource">
+      <select name="id_centre_resource" id="id_centre_resource">
         <option value="" selected>(select centre or resource)</option>
         <option value="c6">C3SE</option>
         <option value="r75">_ Alvis</option>
@@ -80,7 +80,7 @@
       </select>
 
     <h2>Category</h2>
-    <select id="category_id" name="category_id">
+    <select id="id_category" name="id_category">
                     <option value="74">Agricultural science</option>
                     <option value="75">Agricultural science forestry and fishing</option>
                     <option value="76">Animal science</option>
@@ -126,7 +126,7 @@
       <p>If your problem is related to a specific project, select
         that.
       </p>  
-    <select name="project" id="id_project">
+    <select name="id_project" id="id_project">
       <option value="" selected>(select project if appropriate)</option>
       <option value="p18897">SNIC 2021/5-261: &quot;SNIC systems access for application experts&quot;</option>
       <option value="p11111">Test project</option>
@@ -138,10 +138,10 @@
         it easier for the issue to reach the correct persons.
       </p>
       <p>Do not use only generic phrases like "Help", "Problem", "Question", etc.</p>
-    <input type="text" name="summary" maxlength="254" id="id_summary" />    
+    <input type="text" name="id_summary" maxlength="254" id="id_summary" />    
 
     <h2>Description</h2>
-    <textarea class="form-control form-control-sm" name="description" cols="40" rows="10" id="id_description">
+    <textarea class="form-control form-control-sm" name="id_description" cols="40" rows="10" id="id_description">
     </textarea><br><br>
 
     <input value="Send" type="submit" />
