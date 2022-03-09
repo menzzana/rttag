@@ -65,14 +65,14 @@ try:
   sys.setdefaultencoding('utf-8')
   form = cgi.FieldStorage()
   
-  message="Username:"+form.getvalue('id_username')+"\n"
-  message=message+"Problem type:"+form.getvalue('id_problem_type')+"\n"
-  #message=message+"Category:"+form.getvalue('category_id')+"\n"
-  message=message+"Centre resource:"+form.getvalue('id_centre_resource')+"\n"
-  message=message+"Project:"+form.getvalue('id_project')+"\n"
-  message=message+"Summary:"+form.getvalue('id_summary')+"\n"
-  message=message+"Description:"+form.getvalue('id_description')+"\n"
-  sendMail(form.getvalue('id_mail'),"support@pdc.kth.se",form.getvalue('id_summary'),message+"</pre>")
+  message="Username:"+str(form.getvalue('id_username'))+"\n"
+  message=message+"Problem type:"+str(form.getvalue('id_problem_type'))+"\n"
+  message=message+"Category:"+str(form.getvalue('category_id'))+"\n"
+  message=message+"Centre resource:"+str(form.getvalue('id_centre_resource'))+"\n"
+  message=message+"Project:"+str(form.getvalue('id_project'))+"\n"
+  message=message+"Summary:"+str(form.getvalue('id_summary'))+"\n"
+  message=message+"Description:"+str(form.getvalue('id_description'))+"\n"
+  sendMail(str(form.getvalue('id_mail')),"support@pdc.kth.se",str(form.getvalue('id_summary')),message+"</pre>")
   print(template('redirect.tpl',text="Your request has been sent"))  
 
 except Exception as e:
