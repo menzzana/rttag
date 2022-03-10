@@ -67,12 +67,12 @@ try:
   
   message="Username:"+str(form.getvalue('id_username'))+"\n"
   message=message+"Problem type:"+str(form.getvalue('id_problem_type'))+"\n"
-  message=message+"Category:"+str(form.getvalue('category_id'))+"\n"
+  message=message+"Category:"+str(form.getvalue('id_category'))+"\n"
   message=message+"Centre resource:"+str(form.getvalue('id_centre_resource'))+"\n"
   message=message+"Project:"+str(form.getvalue('id_project'))+"\n"
   message=message+"Summary:"+str(form.getvalue('id_summary'))+"\n"
   message=message+"Description:"+str(form.getvalue('id_description'))+"\n"
-  sendMail(str(form.getvalue('id_mail')),"support@pdc.kth.se",str(form.getvalue('id_summary')),message+"</pre>")
+  sendMail(str(form.getvalue('id_mail')),"support@pdc.kth.se",str(form.getvalue('id_summary')),"<pre>"+message+"</pre>")
   print(template('redirect.tpl',text="Your request has been sent"))  
 
 except Exception as e:
