@@ -99,11 +99,7 @@ try:
   fp.close()
   output=os.popen(CREATE_TICKET % (key,cert,filename)).read()
   os.remove(filename)
-  if "Ok" in output and "Created" in output:
-    text="Your request has been sent"
-  else:
-    text=output
-  print(template('redirect.tpl',text=text))  
+  print(template('redirect.tpl',text=output))  
 
 except Exception as e:
   print(template('redirect.tpl',text=e))
