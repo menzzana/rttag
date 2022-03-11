@@ -94,7 +94,7 @@ try:
   data['Text'] = form.getvalue('id_description')
   with open(filename, 'w') as f:
     for key, value in data.items():
-      print(f"{key}: {value}", file=f)
+      print(key + ": " + value, file=f)
   f.close()
   #output=os.popen(CREATE_TICKET % (key,cert,filename)).read()
   #os.remove(filename)
