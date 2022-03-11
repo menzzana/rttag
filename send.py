@@ -22,11 +22,7 @@ import os
 from bottle import template, response, request
 import random
 import unicodedata
-import smtplib
 import collections
-from email.header import Header
-from email.mime.multipart import MIMEMultipart
-from email.mime.text import MIMEText
 #-----------------------------------------------------------------------
 # Constants
 #-----------------------------------------------------------------------
@@ -41,26 +37,6 @@ def generateRandomString(length):
   for i in range(0,length):
     passwd=passwd+RANDOMPASSWD[random.randint(0,len(RANDOMPASSWD)-1)]
   return passwd
-#-----------------------------------------------------------------------
-def sendMail(frommail,tomail,subject,message):
-  msg=MIMEText(message.encode('utf-8'), 'plain', 'utf-8')
-  msg.set_charset("utf-8")
-  msg["Subject"]=subject
-  msg["From"]=frommail
-  msg["To"]=tomail
-  msg['Content-Type'] = "text/html; charset=utf-8"
-  smtpObj = smtplib.SMTP('localhost')
-  smtpObj.sendmail(frommail,[tomail],msg.as_string())
-#-----------------------------------------------------------------------
-def sendForm(form):
-  message="Username:"+str(form.getvalue('id_username'))+"\n"
-  message=message+"Problem type:"+str(form.getvalue('id_problem_type'))+"\n"
-  message=message+"Category:"+str(form.getvalue('id_category'))+"\n"
-  message=message+"Centre resource:"+str(form.getvalue('id_centre_resource'))+"\n"
-  message=message+"Project:"+str(form.getvalue('id_project'))+"\n"
-  message=message+"Summary:"+str(form.getvalue('id_summary'))+"\n"
-  message=message+"Description:"+str(form.getvalue('id_description'))+"\n"
-  sendMail(str(form.getvalue('id_mail')),"support@pdc.kth.se",str(form.getvalue('id_summary')),"<pre>"+message+"</pre>")
 #-----------------------------------------------------------------------
 def removeUnwantedChars(text):
   UNWANTED="\n\\\"'?;"
