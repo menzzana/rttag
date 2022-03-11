@@ -29,9 +29,17 @@ from email.mime.text import MIMEText
 #-----------------------------------------------------------------------
 # Constants
 #-----------------------------------------------------------------------
-
+CREATE_TICKET="curl --key %s --cert %s --data-urlencode content@%s https://minerva.nsc.liu.se/REST/1.0/ticket/new"
 #-----------------------------------------------------------------------
 # Functions
+#-----------------------------------------------------------------------
+def generateRandomString(length):
+  RANDOMPASSWD="ABCDEFGHJKLMNPQRSTUVXYZabcdefghjkmnpqrstuvxyz23456789"
+  passwd=""
+  random.seed()
+  for i in range(0,length):
+    passwd=passwd+RANDOMPASSWD[random.randint(0,len(RANDOMPASSWD)-1)]
+  return passwd
 #-----------------------------------------------------------------------
 def sendMail(frommail,tomail,subject,message):
   msg=MIMEText(message.encode('utf-8'), 'plain', 'utf-8')
@@ -42,6 +50,16 @@ def sendMail(frommail,tomail,subject,message):
   msg['Content-Type'] = "text/html; charset=utf-8"
   smtpObj = smtplib.SMTP('localhost')
   smtpObj.sendmail(frommail,[tomail],msg.as_string())
+#-----------------------------------------------------------------------
+def sendForm(form):
+  message="Username:"+str(form.getvalue('id_username'))+"\n"
+  message=message+"Problem type:"+str(form.getvalue('id_problem_type'))+"\n"
+  message=message+"Category:"+str(form.getvalue('id_category'))+"\n"
+  message=message+"Centre resource:"+str(form.getvalue('id_centre_resource'))+"\n"
+  message=message+"Project:"+str(form.getvalue('id_project'))+"\n"
+  message=message+"Summary:"+str(form.getvalue('id_summary'))+"\n"
+  message=message+"Description:"+str(form.getvalue('id_description'))+"\n"
+  sendMail(str(form.getvalue('id_mail')),"support@pdc.kth.se",str(form.getvalue('id_summary')),"<pre>"+message+"</pre>")
 #-----------------------------------------------------------------------
 def removeUnwantedChars(text):
   UNWANTED="\n\\\"'?;"
@@ -64,16 +82,27 @@ try:
   reload(sys)
   sys.setdefaultencoding('utf-8')
   form = cgi.FieldStorage()
-  
-  message="Username:"+str(form.getvalue('id_username'))+"\n"
-  message=message+"Problem type:"+str(form.getvalue('id_problem_type'))+"\n"
-  message=message+"Category:"+str(form.getvalue('id_category'))+"\n"
-  message=message+"Centre resource:"+str(form.getvalue('id_centre_resource'))+"\n"
-  message=message+"Project:"+str(form.getvalue('id_project'))+"\n"
-  message=message+"Summary:"+str(form.getvalue('id_summary'))+"\n"
-  message=message+"Description:"+str(form.getvalue('id_description'))+"\n"
-  sendMail(str(form.getvalue('id_mail')),"support@pdc.kth.se",str(form.getvalue('id_summary')),"<pre>"+message+"</pre>")
-  print(template('redirect.tpl',text="Your request has been sent"))  
+  filename = str(generateRandomString(10))+".txt"
+  data = {}
+  data['id'] = "ticket/new"
+  data['Queue'] = "General"
+  data['Requestor'] = form.getvalue('id_mail')
+  data['Subject'] = form.getvalue('id_summary')
+  data['CF.{Keywords}'] = str(form.getvalue('id_problem_type'))
+  data['CF.{Keywords}'] += "," + str(form.getvalue('id_category'))
+  data['CF.{Keywords}'] += "," + str(form.getvalue('id_centre_resource'))
+  data['Text'] = form.getvalue('id_description')
+  with open(filename, 'w') as f:
+    for key, value in data.items():
+      print(f"{key}: {value}", file=f)
+  f.close()
+  #output=os.popen(CREATE_TICKET % (key,cert,filename)).read()
+  #os.remove(filename)
+  #if "Ok" in output and "Created" in output:
+  #  text="Your request has been sent"
+  #else:
+  #  text=output
+  print(template('redirect.tpl',text=text))  
 
 except Exception as e:
   print(template('redirect.tpl',text=e))
