@@ -20,6 +20,7 @@ import cgi
 import cgitb
 import os
 from bottle import template, response, request
+import random
 import unicodedata
 import smtplib
 import collections
