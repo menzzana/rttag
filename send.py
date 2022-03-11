@@ -92,10 +92,10 @@ try:
   data['CF.{Keywords}'] += "," + str(form.getvalue('id_category'))
   data['CF.{Keywords}'] += "," + str(form.getvalue('id_centre_resource'))
   data['Text'] = form.getvalue('id_description')
-  with open(filename, 'w') as f:
-    for key, value in data.items():
-      print(key + ": " + value, file=f)
-  f.close()
+  fp = open(filename, "w")
+  for key, value in data.items():
+    fp.write(key + ": " + value)
+  fp.close()
   #output=os.popen(CREATE_TICKET % (key,cert,filename)).read()
   #os.remove(filename)
   #if "Ok" in output and "Created" in output:
