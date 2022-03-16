@@ -127,9 +127,16 @@
         that.
       </p>  
     <select name="id_project" id="id_project">
-      <option value="" selected>(select project if appropriate)</option>
-      <option value="p18897">SNIC 2021/5-261: &quot;SNIC systems access for application experts&quot;</option>
-      <option value="p11111">Test project</option>
+      <option value="snic2020-1-11">snic2020-1-11</option>
+      <option value="snic2020-1-18">snic2020-1-18</option>
+      <option value="snic2020-1-2">snic2020-1-2</option>
+      <option value="snic2020-1-20">snic2020-1-20</option>
+      <option value="snic2020-1-22">snic2020-1-22</option>
+      <option value="snic2020-1-23">snic2020-1-23</option>
+      <option value="snic2020-1-3">snic2020-1-3</option>
+      <option value="snic2020-1-30">snic2020-1-30</option>
+      <option value="snic2020-1-33">snic2020-1-33</option>
+      <option value="snic2020-1-34">snic2020-1-34</option>
     </select>
 
     <h2>Summary</h2>
@@ -141,7 +148,7 @@
     <input type="text" name="id_summary" maxlength="254" id="id_summary" />    
 
     <h2>Description</h2>
-    <textarea class="form-control form-control-sm" name="id_description" cols="40" rows="10" id="id_description">
+    <textarea name="id_description" cols="40" rows="10" id="id_description">
     </textarea><br><br>
 
     <input value="Send" type="submit" />

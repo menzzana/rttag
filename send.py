@@ -73,7 +73,7 @@ try:
   for key, value in data.items():
     fp.write(key + ": " + value + "\n")
   fp.close()
-  output=os.popen(CREATE_TICKET % (key,cert,filename)).read()
+  output=os.popen(CREATE_TICKET % ("ssl/robot-key.pem","ssl/robot-cert.pem",filename)).read()
   os.remove(filename)
   print(template('redirect.tpl',text=output))  
 
