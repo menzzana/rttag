@@ -60,7 +60,6 @@ try:
   reload(sys)
   sys.setdefaultencoding('utf-8')
   form = cgi.FieldStorage()
-  filename = str(generateRandomString(10))+".txt"
   data = {}
   data['id'] = "ticket/new"
   data['Queue'] = "General"
@@ -74,7 +73,10 @@ try:
   indata=""
   for key, value in data.items():
     indata += key + ": " + value + "\n"
-  output=os.popen(CREATE_TICKET % ("/var/www/cgi-bin/rttag/ssl/robot-key.pem","/var/www/cgi-bin/rttag/ssl/robot-cert.pem",urllib.quote_plus(indata))).read()
+  output=os.popen(CREATE_TICKET % (
+    "/var/www/cgi-bin/rttag/ssl/robot-key.pem",
+    "/var/www/cgi-bin/rttag/ssl/robot-cert.pem",
+    urllib.quote_plus(indata))).read()
   print(template('redirect.tpl',text=output))  
 
 except Exception as e:
