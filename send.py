@@ -63,7 +63,7 @@ try:
   data = {}
   data['id'] = "ticket/new"
   data['Queue'] = "General"
-  data['Project'] = form.getvalue('id_project')
+  data['CF.{Project}'] = form.getvalue('id_project')
   data['Requestor'] = form.getvalue('id_mail')
   data['Subject'] = form.getvalue('id_summary')
   data['CF.{Keywords}'] = str(form.getvalue('id_problem_type'))
