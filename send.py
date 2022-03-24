@@ -23,10 +23,11 @@ from bottle import template, response, request
 import random
 import unicodedata
 import collections
+import urllib
 #-----------------------------------------------------------------------
 # Constants
 #-----------------------------------------------------------------------
-CREATE_TICKET="curl --key %s --cert %s --data-urlencode content@%s https://minerva.nsc.liu.se/REST/1.0/ticket/new"
+CREATE_TICKET="curl --key %s --cert %s -d \"content=%s\" https://minerva.nsc.liu.se/REST/1.0/ticket/new"
 #-----------------------------------------------------------------------
 # Functions
 #-----------------------------------------------------------------------
@@ -70,12 +71,10 @@ try:
   data['CF.{Keywords}'] += "," + str(form.getvalue('id_category'))
   data['CF.{Keywords}'] += "," + str(form.getvalue('id_centre_resource'))
   data['Text'] = form.getvalue('id_description')
-  fp = open(filename, "w")
+  indata=""
   for key, value in data.items():
-    fp.write(key + ": " + value + "\n")
-  fp.close()
-  output=os.popen(CREATE_TICKET % ("/var/www/cgi-bin/rttag/ssl/robot-key.pem","/var/www/cgi-bin/rttag/ssl/robot-cert.pem",filename)).read()
-  os.remove(filename)
+    indata += key + ": " + value + "\n"
+  output=os.popen(CREATE_TICKET % ("/var/www/cgi-bin/rttag/ssl/robot-key.pem","/var/www/cgi-bin/rttag/ssl/robot-cert.pem",urllib.quote_plus(indata))).read()
   print(template('redirect.tpl',text=output))  
 
 except Exception as e:
