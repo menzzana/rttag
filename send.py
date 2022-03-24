@@ -66,7 +66,7 @@ try:
   data['CF.{Project}'] = form.getvalue('id_project')
   data['Requestor'] = form.getvalue('id_mail')
   data['Subject'] = form.getvalue('id_summary')
-  data['CF.{Keywords}'] = str("problem=" + form.getvalue('id_problem_type'))
+  data['CF.{Keywords}'] = str("problem_type=" + form.getvalue('id_problem_type'))
   data['CF.{Keywords}'] += "," + str("category=" + form.getvalue('id_category'))
   data['CF.{Keywords}'] += "," + str("resource=" + form.getvalue('id_centre_resource'))
   data['Text'] = form.getvalue('id_description')
