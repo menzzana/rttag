@@ -63,6 +63,7 @@ try:
   data = {}
   data['id'] = "ticket/new"
   data['Queue'] = "General"
+  data['Project'] = form.getvalue('id_project')
   data['Requestor'] = form.getvalue('id_mail')
   data['Subject'] = form.getvalue('id_summary')
   data['CF.{Keywords}'] = str(form.getvalue('id_problem_type'))
@@ -73,7 +74,7 @@ try:
   for key, value in data.items():
     fp.write(key + ": " + value + "\n")
   fp.close()
-  output=os.popen(CREATE_TICKET % ("ssl/robot-key.pem","ssl/robot-cert.pem",filename)).read()
+  output=os.popen(CREATE_TICKET % ("/var/www/cgi-bin/rttag/ssl/robot-key.pem","/var/www/cgi-bin/rttag/ssl/robot-cert.pem",filename)).read()
   os.remove(filename)
   print(template('redirect.tpl',text=output))  
 
