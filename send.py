@@ -56,10 +56,16 @@ def isnumeric(s):
     return False
 #-----------------------------------------------------------------------
 def setKeywordsFromText(data):
-  text = re.sub("[\s:,./#]+", " ", data['Text'].lower()).split(" ")
+  text = re.sub("[\s:;-,./#]+", " ", data['Text'].lower()).split(" ")
   for s1 in SOFTWARE:
     if s1 in text:
       data['CF.{Keywords}'] += "," + str("software=" + s1)
+#-----------------------------------------------------------------------
+def reformatSendData(data):
+  indata=""
+  for key, value in data.items():
+    indata += key + ": " + value + "\n"
+  return urllib.quote_plus(indata)
 #-----------------------------------------------------------------------
 # Main
 #-----------------------------------------------------------------------
@@ -79,13 +85,11 @@ try:
   data['CF.{Keywords}'] += "," + str("resource=" + form.getvalue('id_centre_resource'))
   data['Text'] = form.getvalue('id_description')
   setKeywordsFromText(data)
-  indata=""
-  for key, value in data.items():
-    indata += key + ": " + value + "\n"
+  indata = reformatSendData(data)
   output=os.popen(CREATE_TICKET % (
     "/var/www/cgi-bin/rttag/ssl/robot-key.pem",
     "/var/www/cgi-bin/rttag/ssl/robot-cert.pem",
-    urllib.quote_plus(indata))).read()
+    indata)).read()
   print(template('redirect.tpl',text=output))  
 
 except Exception as e:
