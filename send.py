@@ -15,6 +15,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 #-----------------------------------------------------------------------
+import re
 import sys
 import cgi
 import cgitb
@@ -28,6 +29,7 @@ import urllib
 # Constants
 #-----------------------------------------------------------------------
 CREATE_TICKET="curl --key %s --cert %s -d \"content=%s\" https://minerva.nsc.liu.se/REST/1.0/ticket/new"
+SOFTWARE=['vasp','gromacs','bwa','nek5000','openfoam','veloxchem']
 #-----------------------------------------------------------------------
 # Functions
 #-----------------------------------------------------------------------
@@ -53,6 +55,12 @@ def isnumeric(s):
   except ValueError:
     return False
 #-----------------------------------------------------------------------
+def setKeywordsFromText(data):
+  text = re.sub("[\s:,./#]+", " ", data['Text'].lower()).split(" ")
+  for s1 in SOFTWARE:
+    if s1 in text:
+      data['CF.{Keywords}'] += "," + str("software=" + s1)
+#-----------------------------------------------------------------------
 # Main
 #-----------------------------------------------------------------------
 try:
@@ -70,6 +78,7 @@ try:
   data['CF.{Keywords}'] += "," + str("category=" + form.getvalue('id_category'))
   data['CF.{Keywords}'] += "," + str("resource=" + form.getvalue('id_centre_resource'))
   data['Text'] = form.getvalue('id_description')
+  setKeywordsFromText(data)
   indata=""
   for key, value in data.items():
     indata += key + ": " + value + "\n"
