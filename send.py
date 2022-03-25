@@ -56,7 +56,7 @@ def isnumeric(s):
     return False
 #-----------------------------------------------------------------------
 def setKeywordsFromText(data):
-  text = re.sub("[\s:;-,./#]+", " ", data['Text'].lower()).split(" ")
+  text = re.sub("[\s:;,./#]+", " ", data['Text'].lower()).split(" ")
   for s1 in SOFTWARE:
     if s1 in text:
       data['CF.{Keywords}'] += "," + str("software=" + s1)
