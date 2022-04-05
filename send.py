@@ -25,11 +25,11 @@ import random
 import unicodedata
 import collections
 import urllib
+import json
 #-----------------------------------------------------------------------
 # Constants
 #-----------------------------------------------------------------------
 CREATE_TICKET="curl --key %s --cert %s -d \"content=%s\" https://minerva.nsc.liu.se/REST/1.0/ticket/new"
-SOFTWARE=['vasp','gromacs','bwa','nek5000','openfoam','veloxchem']
 #-----------------------------------------------------------------------
 # Functions
 #-----------------------------------------------------------------------
@@ -55,9 +55,9 @@ def isnumeric(s):
   except ValueError:
     return False
 #-----------------------------------------------------------------------
-def setKeywordsFromText(data):
+def setKeywordsFromText(data,type_array):
   text = re.sub("[\s:;,./#]+", " ", data['Text'].lower()).split(" ")
-  for s1 in SOFTWARE:
+  for s1 in type_array:
     if s1 in text:
       data['CF.{Keywords}'] += "," + str("software=" + s1)
 #-----------------------------------------------------------------------
@@ -74,6 +74,8 @@ try:
   reload(sys)
   sys.setdefaultencoding('utf-8')
   form = cgi.FieldStorage()
+  fp=open('/var/www/cgi-bin/rttag/types.json')
+  jsondata=json.load(fp)
   data = {}
   data['id'] = "ticket/new"
   data['Queue'] = "General"
@@ -88,7 +90,7 @@ try:
   if not form.getvalue('id_centre_resource').startswith('('):
     data['CF.{Keywords}'] += "," + str("resource=" + form.getvalue('id_centre_resource'))
   data['Text'] = form.getvalue('id_description')
-  setKeywordsFromText(data)
+  setKeywordsFromText(data,jsondata["software"])
   indata = reformatSendData(data)
   output=os.popen(CREATE_TICKET % (
     "/var/www/cgi-bin/rttag/ssl/robot-key.pem",
