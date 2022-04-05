@@ -18,7 +18,7 @@ try:
   print("Content-type:text/html\r\n")
   reload(sys)
   sys.setdefaultencoding('utf-8')
-  fp=open('/var/www/cgi-bin/types.json')
+  fp=open('/var/www/cgi-bin/rttag/types.json')
   data=json.load(fp)
   print(template('index.tpl',
     problem_type=getJsonData(data,"problem_type"),
