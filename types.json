@@ -422,7 +422,7 @@
         "mvapich2",
         "petsc",
         "SCOTCH",
-        "vasptools"
+        "vasptools",
         "almost",
         "Clang",
         "dolfin-hpc",
