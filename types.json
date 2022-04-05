@@ -382,7 +382,7 @@
         "mpi4py",
         "Paraview",
         "samtools",
-        "upcc"
+        "upcc",
         "ABINIT",
         "cdo",
         "dazz_db",
@@ -392,7 +392,7 @@
         "MultiNest",
         "ParMETIS",
         "Scalasca",
-        "UppASD"
+        "UppASD",
         "allinea-forge",
         "CFITSIO",
         "dftd4",
@@ -412,7 +412,7 @@
         "MUMPS",
         "perl",
         "Score-P",
-        "VASP"
+        "VASP",
         "allpaths-lg",
         "Chapel",
         "dock",
@@ -452,7 +452,7 @@
         "NCL",
         "phonopy",
         "slepc",
-        "Vim"
+        "Vim",
         "Ansys-Fluent",
         "CONVERGE",
         "eigen",
@@ -462,7 +462,7 @@
         "NCO",
         "phylobayes",
         "SPAdes",
-        "VisIt"
+        "VisIt",
         "arm-forge",
         "cp2k",
         "Elk",
@@ -472,7 +472,7 @@
         "nek5000",
         "pigz",
         "Spglib",
-        "vmd"
+        "vmd",
         "ase",
         "cray",
         "Elmer",
@@ -502,7 +502,7 @@
         "NWChem",
         "python",
         "Subversion",
-        "Yambo"
+        "Yambo",
         "AVL-Fire",
         "cray-netcdf",
         "EMBOSS",
@@ -511,7 +511,7 @@
         "Mesa",
         "Octave",
         "PyTorch",
-        "SUMO"
+        "SUMO",
         "beef",
         "cray-petsc",
         "EspressoMD",
@@ -565,7 +565,7 @@
         "mono",
         "OpenFOAM",
         "RSPt",
-        "tmux"
+        "tmux",
         "Caffe",
         "CVS",
         "FDTD",
@@ -574,7 +574,7 @@
         "mpc",
         "openmpi",
         "rust",
-        "tophat"
+        "tophat",
         "canu",
         "daligner",
         "FFmpeg",
