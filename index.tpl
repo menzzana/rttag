@@ -9,7 +9,7 @@
         Username: <input name="id_username" id="id_username" type="text" /><br><br>
         Mail: <input name="id_mail" id="id_mail" type="text" /><br><br>
         <h2>Problem type</h2>
-        {{problem_type}}
+        {{!problem_type}}
     
        <h2>Centre and Resource</h2>
        If your problem is not related to a
@@ -20,16 +20,16 @@
          select the centre and mention the resources in the problem
          description below.
       </p>  
-      {{centre_resource}}
+      {{!centre_resource}}
 
       <h2>Category</h2>
-      {{category_type}}
+      {{!category_type}}
 
       <h2>Project</h2>
         <p>If your problem is related to a specific project, select
           that.
         </p> 
-      {{project}}
+      {{!project}}
 
       <h2>Summary</h2>
         <p>Provide a concise one-line summary of your problem. It will be used
