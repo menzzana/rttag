@@ -432,7 +432,7 @@
         "NAMD",
         "pflotran",
         "siesta",
-        "VCFtools"
+        "VCFtools",
         "Amber",
         "CMake",
         "dssp",
@@ -442,7 +442,7 @@
         "nano",
         "pgi",
         "singularity",
-        "VeloxChem"
+        "VeloxChem",
         "Ansys-CFX",
         "Comsol",
         "EasyBuild",
@@ -482,7 +482,7 @@
         "nest",
         "plumed",
         "StarCCM",
-        "Wannier90"
+        "Wannier90",
         "Autoconf",
         "cray-hdf5",
         "Elmerice",
@@ -492,7 +492,7 @@
         "NetCDF",
         "PowerFLOW",
         "SU2",
-        "wanniertools"
+        "wanniertools",
         "Automake",
         "cray-libsci",
         "ELPA",
@@ -538,7 +538,7 @@
         "midnightcommander",
         "openafs",
         "ray",
-        "TELEMAC"
+        "TELEMAC",
         "boost",
         "CUDA",
         "FastQC",
@@ -547,7 +547,7 @@
         "mkl",
         "openbabel",
         "ReFrame",
-        "tensorflow"
+        "tensorflow",
         "bwa",
         "cuDNN",
         "FastUniq",
@@ -556,7 +556,7 @@
         "molden",
         "OpenCV",
         "ROOT",
-        "thumbup"
+        "thumbup",
         "bwtool",
         "CVODES",
         "FDS",
