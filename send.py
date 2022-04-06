@@ -55,9 +55,9 @@ def isnumeric(s):
   except ValueError:
     return False
 #-----------------------------------------------------------------------
-def setKeywordsFromText(data,type_array):
+def setKeywordsFromText(data,jsondata,type_array):
   text = re.sub("[\s:;,./#]+", " ", data['Text'].lower()).split(" ")
-  for s1 in type_array:
+  for s1 in jsondata[type_array]:
     sa=s1.lower().split(" ")
     found=True
     idx=0
@@ -73,7 +73,7 @@ def setKeywordsFromText(data,type_array):
         found=False
         break
     if found:
-      data['CF.{Keywords}'] += "," + str("software=" + s1)
+      data['CF.{Keywords}'] += "," + str(type_array + "=" + s1)
 #-----------------------------------------------------------------------
 def reformatSendData(data):
   indata=""
@@ -104,10 +104,10 @@ try:
   if not form.getvalue('id_centre_resource').startswith('('):
     data['CF.{Keywords}'] += "," + str("resource=" + form.getvalue('id_centre_resource'))
   data['Text'] = form.getvalue('id_description')
-  setKeywordsFromText(data,jsondata["problem_type"])
-  setKeywordsFromText(data,jsondata["centre_resource"])
-  setKeywordsFromText(data,jsondata["category_type"])
-  setKeywordsFromText(data,jsondata["software"])
+  setKeywordsFromText(data,jsondata,"problem_type")
+  setKeywordsFromText(data,jsondata,"centre_resource")
+  setKeywordsFromText(data,jsondata,"category_type")
+  setKeywordsFromText(data,jsondata,"software")
   indata = reformatSendData(data)
   output=os.popen(CREATE_TICKET % (
     "/var/www/cgi-bin/rttag/ssl/robot-key.pem",
