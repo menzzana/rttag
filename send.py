@@ -69,7 +69,7 @@ def setKeywordsFromText(data,type_array):
         idx=text.index(s2)
         continue
       idx=idx+1
-      if text.index(s2)!=idx
+      if text.index(s2)!=idx:
         found=False
         break
     if found:
@@ -104,6 +104,9 @@ try:
   if not form.getvalue('id_centre_resource').startswith('('):
     data['CF.{Keywords}'] += "," + str("resource=" + form.getvalue('id_centre_resource'))
   data['Text'] = form.getvalue('id_description')
+  setKeywordsFromText(data,jsondata["problem_type"])
+  setKeywordsFromText(data,jsondata["centre_resource"])
+  setKeywordsFromText(data,jsondata["category_type"])
   setKeywordsFromText(data,jsondata["software"])
   indata = reformatSendData(data)
   output=os.popen(CREATE_TICKET % (
