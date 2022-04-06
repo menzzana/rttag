@@ -58,7 +58,21 @@ def isnumeric(s):
 def setKeywordsFromText(data,type_array):
   text = re.sub("[\s:;,./#]+", " ", data['Text'].lower()).split(" ")
   for s1 in type_array:
-    if s1 in text:
+    sa=s1.lower().split(" ")
+    found=True
+    idx=0
+    for s2 in sa:
+      if s2 not in text:
+        found=False
+        break
+      if idx==0:
+        idx=text.index(s2)
+        continue
+      idx=idx+1
+      if text.index(s2)!=idx
+        found=False
+        break
+    if found:
       data['CF.{Keywords}'] += "," + str("software=" + s1)
 #-----------------------------------------------------------------------
 def reformatSendData(data):
@@ -97,6 +111,8 @@ try:
     "/var/www/cgi-bin/rttag/ssl/robot-cert.pem",
     indata)).read()
   print(template('redirect.tpl',text=output))  
+  out_array=output.lower().split(" ")
+  ticketn=out_array[out_array.index("ticket")+1]
 
 except Exception as e:
   print(template('redirect.tpl',text=e))
