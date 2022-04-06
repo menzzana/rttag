@@ -97,8 +97,9 @@ try:
     data['CF.{Project}'] = form.getvalue('id_project')
   data['Requestor'] = form.getvalue('id_mail')
   data['Subject'] = form.getvalue('id_summary')
+  data['CF.{Keywords}']=""
   if not form.getvalue('id_problem_type').startswith('('):
-    data['CF.{Keywords}'] = str("problem_type=" + form.getvalue('id_problem_type'))
+    data['CF.{Keywords}'] += str("problem_type=" + form.getvalue('id_problem_type'))
   if not form.getvalue('id_category_type').startswith('('):
     data['CF.{Keywords}'] += "," + str("category=" + form.getvalue('id_category_type'))
   if not form.getvalue('id_centre_resource').startswith('('):
@@ -108,6 +109,8 @@ try:
   setKeywordsFromText(data,jsondata,"centre_resource")
   setKeywordsFromText(data,jsondata,"category_type")
   setKeywordsFromText(data,jsondata,"software")
+  if not data['CF.{Keywords}']:
+    del data['CF.{Keywords}']
   indata = reformatSendData(data)
   output=os.popen(CREATE_TICKET % (
     "/var/www/cgi-bin/rttag/ssl/robot-key.pem",
