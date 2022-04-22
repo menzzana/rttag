@@ -75,12 +75,20 @@ def setKeywordsFromText(data,jsondata,type_array):
     if found:
       data['CF.{Keywords}'] += "," + str(type_array + "=" + s1)
 #-----------------------------------------------------------------------
-def reformatSendData(data):
+def reformatSendData2(data):
   indata=""
   for key, value in data.items():
     indata += key + ": " + value + "\n"
-  
   return urllib.quote_plus(indata)
+#-----------------------------------------------------------------------
+def reformatSendData(data):
+  indata=""
+  for key, value in data.items():
+    urldata = urllib.quote_plus(key + ": " + value + "\n")
+    if key == "Text":
+      urldata = urldata.replace("%0A", "<br>")
+    indata += urldata
+  return indata
 #-----------------------------------------------------------------------
 # Main
 #-----------------------------------------------------------------------
@@ -99,7 +107,6 @@ try:
   data['Requestor'] = form.getvalue('id_mail')
   data['Subject'] = form.getvalue('id_summary')
   data['Text'] = form.getvalue('id_description')
-  data['Text'] = data['Text'].replace("\n", "<br>")
   data['CF.{Keywords}']=""
   if not form.getvalue('id_problem_type').startswith('('):
     data['CF.{Keywords}'] += str("problem_type=" + form.getvalue('id_problem_type'))
