@@ -97,6 +97,7 @@ try:
     data['CF.{Project}'] = form.getvalue('id_project')
   data['Requestor'] = form.getvalue('id_mail')
   data['Subject'] = form.getvalue('id_summary')
+  data['Text'] = form.getvalue('id_description')
   data['CF.{Keywords}']=""
   if not form.getvalue('id_problem_type').startswith('('):
     data['CF.{Keywords}'] += str("problem_type=" + form.getvalue('id_problem_type'))
@@ -104,7 +105,6 @@ try:
     data['CF.{Keywords}'] += "," + str("category=" + form.getvalue('id_category_type'))
   if not form.getvalue('id_centre_resource').startswith('('):
     data['CF.{Keywords}'] += "," + str("resource=" + form.getvalue('id_centre_resource'))
-  data['Text'] = form.getvalue('id_description')
   setKeywordsFromText(data,jsondata,"problem_type")
   setKeywordsFromText(data,jsondata,"centre_resource")
   setKeywordsFromText(data,jsondata,"category_type")
@@ -117,6 +117,7 @@ try:
     "/var/www/cgi-bin/rttag/ssl/robot-cert.pem",
     indata)).read()
   print(template('redirect.tpl',text=output))  
+  print(indata)
   out_array=output.lower().split(" ")
   ticketn=out_array[out_array.index("ticket")+1]
 
