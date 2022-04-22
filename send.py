@@ -29,7 +29,7 @@ import json
 #-----------------------------------------------------------------------
 # Constants
 #-----------------------------------------------------------------------
-CREATE_TICKET="curl --key %s --cert %s -d \"content=%s\" https://minerva.nsc.liu.se/REST/1.0/ticket/new"
+CREATE_TICKET="curl --key %s --cert %s --data-urlencode \"content=%s\" https://minerva.nsc.liu.se/REST/1.0/ticket/new"
 #-----------------------------------------------------------------------
 # Functions
 #-----------------------------------------------------------------------
@@ -111,7 +111,6 @@ try:
   setKeywordsFromText(data,jsondata,"software")
   if not data['CF.{Keywords}']:
     del data['CF.{Keywords}']
-  data['Text'] = data['Text'].replace("\n", "<br\>")
   indata = reformatSendData(data)
   output=os.popen(CREATE_TICKET % (
     "/var/www/cgi-bin/rttag/ssl/robot-key.pem",
