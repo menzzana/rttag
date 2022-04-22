@@ -29,8 +29,7 @@ import json
 #-----------------------------------------------------------------------
 # Constants
 #-----------------------------------------------------------------------
-# CREATE_TICKET="curl --key %s --cert %s -d \"content=%s\" https://minerva.nsc.liu.se/REST/1.0/ticket/new"
-CREATE_TICKET="curl --key %s --cert %s --data-binary $'content=%s' -H \"Content-Type: text/plain\" https://minerva.nsc.liu.se/REST/1.0/ticket/new"
+CREATE_TICKET="curl --key %s --cert %s --data-binary \"content=%s\" https://minerva.nsc.liu.se/REST/1.0/ticket/new"
 #-----------------------------------------------------------------------
 # Functions
 #-----------------------------------------------------------------------
@@ -106,7 +105,7 @@ try:
     data['CF.{Keywords}'] += "," + str("category=" + form.getvalue('id_category_type'))
   if not form.getvalue('id_centre_resource').startswith('('):
     data['CF.{Keywords}'] += "," + str("resource=" + form.getvalue('id_centre_resource'))
-  data['Text'] = form.getvalue('id_description')
+  data['Text'] = "Multi line\n" + form.getvalue('id_description')
   setKeywordsFromText(data,jsondata,"problem_type")
   setKeywordsFromText(data,jsondata,"centre_resource")
   setKeywordsFromText(data,jsondata,"category_type")
