@@ -29,7 +29,7 @@ import json
 #-----------------------------------------------------------------------
 # Constants
 #-----------------------------------------------------------------------
-CREATE_TICKET="curl --key %s --cert %s --data-urlencode \"content=%s\" https://minerva.nsc.liu.se/REST/1.0/ticket/new"
+CREATE_TICKET="curl --key %s --cert %s --data-binary \"content=%s\" https://minerva.nsc.liu.se/REST/1.0/ticket/new"
 #-----------------------------------------------------------------------
 # Functions
 #-----------------------------------------------------------------------
