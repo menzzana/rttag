@@ -23,7 +23,7 @@ import os
 from bottle import template, response, request
 import random
 import unicodedata
-import collections
+from collections import OrderedDict
 import urllib
 import json
 #-----------------------------------------------------------------------
@@ -91,7 +91,7 @@ try:
   form = cgi.FieldStorage()
   fp=open('/var/www/cgi-bin/rttag/types.json')
   jsondata=json.load(fp)
-  data = {}
+  data = OrderedDict()
   data['id'] = "ticket/new"
   data['Queue'] = "General"
   if not form.getvalue('id_project').startswith('('):
