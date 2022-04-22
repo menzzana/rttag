@@ -79,7 +79,8 @@ def reformatSendData(data):
   indata=""
   for key, value in data.items():
     indata += key + ": " + value + "\n"
-  return urllib.quote_plus(indata)
+  #return urllib.quote_plus(indata)
+  return indata
 #-----------------------------------------------------------------------
 # Main
 #-----------------------------------------------------------------------
@@ -97,7 +98,7 @@ try:
     data['CF.{Project}'] = form.getvalue('id_project')
   data['Requestor'] = form.getvalue('id_mail')
   data['Subject'] = form.getvalue('id_summary')
-  data['Text'] = "Multi line\n"+form.getvalue('id_description')
+  data['Text'] = form.getvalue('id_description')
   data['CF.{Keywords}']=""
   if not form.getvalue('id_problem_type').startswith('('):
     data['CF.{Keywords}'] += str("problem_type=" + form.getvalue('id_problem_type'))
