@@ -110,7 +110,8 @@ try:
   setKeywordsFromText(data,jsondata,"software")
   if not data['CF.{Keywords}']:
     del data['CF.{Keywords}']
-  data['Text'] = form.getvalue('id_description').replace("\n", "<br\>")
+  data['Text'] = form.getvalue('id_description')
+  data['Text'] = data['Text'].replace("\n", "<br\>")
   indata = reformatSendData(data)
   output=os.popen(CREATE_TICKET % (
     "/var/www/cgi-bin/rttag/ssl/robot-key.pem",
