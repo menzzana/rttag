@@ -29,7 +29,9 @@ import json
 #-----------------------------------------------------------------------
 # Constants
 #-----------------------------------------------------------------------
-CREATE_TICKET="curl --key %s --cert %s --data-binary \"content=%s\" https://minerva.nsc.liu.se/REST/1.0/ticket/new"
+# CREATE_TICKET="curl --key %s --cert %s -d \"content=%s\" https://minerva.nsc.liu.se/REST/1.0/ticket/new"
+CREATE_TICKET="curl --key %s --cert %s -X PUT -d $'content=%s' https://minerva.nsc.liu.se/REST/1.0/ticket/new"
+
 #-----------------------------------------------------------------------
 # Functions
 #-----------------------------------------------------------------------
@@ -79,8 +81,8 @@ def reformatSendData(data):
   indata=""
   for key, value in data.items():
     indata += key + ": " + value + "\n"
-  #return indata
-  return urllib.quote_plus(indata)
+  return indata
+  #return urllib.quote_plus(indata)
 #-----------------------------------------------------------------------
 # Main
 #-----------------------------------------------------------------------
