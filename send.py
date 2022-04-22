@@ -30,7 +30,7 @@ import json
 # Constants
 #-----------------------------------------------------------------------
 # CREATE_TICKET="curl --key %s --cert %s -d \"content=%s\" https://minerva.nsc.liu.se/REST/1.0/ticket/new"
-CREATE_TICKET="curl --key %s --cert %s -X PUT -d $'content=%s' https://minerva.nsc.liu.se/REST/1.0/ticket/new"
+CREATE_TICKET="curl --key %s --cert %s -X PUT --data-binary $'content=%s' https://minerva.nsc.liu.se/REST/1.0/ticket/new"
 
 #-----------------------------------------------------------------------
 # Functions
