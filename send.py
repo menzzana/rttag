@@ -78,7 +78,7 @@ def setKeywordsFromText(data,jsondata,type_array):
 def reformatSendData(data):
   indata=""
   for key, value in data.items():
-    indata += key + ": " + value + "%0A"
+    indata += key + ": " + value + urllib.quote_plus("\n")
   #return urllib.quote_plus(indata)
   return indata
 #-----------------------------------------------------------------------
