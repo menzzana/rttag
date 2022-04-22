@@ -104,14 +104,14 @@ try:
     data['CF.{Keywords}'] += "," + str("category=" + form.getvalue('id_category_type'))
   if not form.getvalue('id_centre_resource').startswith('('):
     data['CF.{Keywords}'] += "," + str("resource=" + form.getvalue('id_centre_resource'))
+  data['Text'] = form.getvalue('id_description')
   setKeywordsFromText(data,jsondata,"problem_type")
   setKeywordsFromText(data,jsondata,"centre_resource")
   setKeywordsFromText(data,jsondata,"category_type")
   setKeywordsFromText(data,jsondata,"software")
   if not data['CF.{Keywords}']:
     del data['CF.{Keywords}']
-  data['Text'] = form.getvalue('id_description')
-  #data['Text'] = data['Text'].replace("\n", "<br\>")
+  data['Text'] = data['Text'].replace("\n", "<br\>")
   indata = reformatSendData(data)
   output=os.popen(CREATE_TICKET % (
     "/var/www/cgi-bin/rttag/ssl/robot-key.pem",
