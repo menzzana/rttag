@@ -75,19 +75,11 @@ def setKeywordsFromText(data,jsondata,type_array):
     if found:
       data['CF.{Keywords}'] += "," + str(type_array + "=" + s1)
 #-----------------------------------------------------------------------
-def reformatSendData2(data):
-  indata=""
-  for key, value in data.items():
-    indata += key + ": " + value + "\n"
-  return urllib.quote_plus(indata)
-#-----------------------------------------------------------------------
 def reformatSendData(data):
   indata=""
   for key, value in data.items():
-    urldata = urllib.quote_plus(key + ": " + value + "\n")
-    if key == "Text":
-      urldata = urldata.replace("%0A", "<br>")+"\n"
-    indata += urldata
+    indata += key + ": " + value + "\n"
+  #return urllib.quote_plus(indata)
   return indata
 #-----------------------------------------------------------------------
 # Main
