@@ -97,7 +97,7 @@ try:
     data['CF.{Project}'] = form.getvalue('id_project')
   data['Requestor'] = form.getvalue('id_mail')
   data['Subject'] = form.getvalue('id_summary')
-  data['Text'] = form.getvalue('id_description')
+  data['Text'] = "Multi line\n"+form.getvalue('id_description')
   data['CF.{Keywords}']=""
   if not form.getvalue('id_problem_type').startswith('('):
     data['CF.{Keywords}'] += str("problem_type=" + form.getvalue('id_problem_type'))
