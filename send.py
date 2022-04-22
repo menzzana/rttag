@@ -95,9 +95,12 @@ try:
   data['Queue'] = "General"
   if not form.getvalue('id_project').startswith('('):
     data['CF.{Project}'] = form.getvalue('id_project')
-  data['Requestor'] = form.getvalue('id_mail')
-  data['Subject'] = form.getvalue('id_summary')
-  data['Text'] = form.getvalue('id_description')
+  if form.getvalue('id_mail'):
+    data['Requestor'] = form.getvalue('id_mail')
+  if form.getvalue('id_summary'):
+    data['Subject'] = form.getvalue('id_summary')
+  if form.getvalue('id_description');
+    data['Text'] = form.getvalue('id_description')
   data['CF.{Keywords}']=""
   if not form.getvalue('id_problem_type').startswith('('):
     data['CF.{Keywords}'] += str("problem_type=" + form.getvalue('id_problem_type'))
@@ -116,8 +119,9 @@ try:
     "/var/www/cgi-bin/rttag/ssl/robot-key.pem",
     "/var/www/cgi-bin/rttag/ssl/robot-cert.pem",
     indata)).read()
+  with open("/var/www/cgi-bin/rttag/indata.txt", "w") as text_file:
+    text_file.write(indata)
   print(template('redirect.tpl',text=output))  
-  print(len(indata))
   out_array=output.lower().split(" ")
   ticketn=out_array[out_array.index("ticket")+1]
 
