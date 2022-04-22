@@ -79,7 +79,8 @@ def reformatSendData(data):
   indata=""
   for key, value in data.items():
     indata += key + ": " + value + "\n"
-  return indata
+  #return indata
+  return urllib.quote_plus(indata)
 #-----------------------------------------------------------------------
 # Main
 #-----------------------------------------------------------------------
