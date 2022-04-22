@@ -86,7 +86,7 @@ def reformatSendData(data):
   for key, value in data.items():
     urldata = urllib.quote_plus(key + ": " + value + "\n")
     if key == "Text":
-      urldata = urldata.replace("%0A", "<br>")
+      urldata = urldata.replace("%0A", "<br>")+"\n"
     indata += urldata
   return indata
 #-----------------------------------------------------------------------
