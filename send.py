@@ -78,7 +78,7 @@ def setKeywordsFromText(data,jsondata,type_array):
 def reformatSendData(data):
   indata=""
   for key, value in data.items():
-    indata += key + ": " + value + "%0A"
+    indata += key + ": " + value + "\n"
   #return indata
   return urllib.quote_plus(indata)
 #-----------------------------------------------------------------------
@@ -105,7 +105,7 @@ try:
     data['CF.{Keywords}'] += "," + str("category=" + form.getvalue('id_category_type'))
   if not form.getvalue('id_centre_resource').startswith('('):
     data['CF.{Keywords}'] += "," + str("resource=" + form.getvalue('id_centre_resource'))
-  data['Text'] = form.getvalue('id_description').replace("\n","%0A ")
+  data['Text'] = form.getvalue('id_description').replace("\n","\n ")
   setKeywordsFromText(data,jsondata,"problem_type")
   setKeywordsFromText(data,jsondata,"centre_resource")
   setKeywordsFromText(data,jsondata,"category_type")
