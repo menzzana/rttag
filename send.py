@@ -29,8 +29,8 @@ import json
 #-----------------------------------------------------------------------
 # Constants
 #-----------------------------------------------------------------------
-# CREATE_TICKET="curl --key %s --cert %s --data-binary \"content=%s\" https://minerva.nsc.liu.se/REST/1.0/ticket/new"
-CREATE_TICKET="curl --key %s --cert %s -H 'Content-Type: text/html' -d \"content=%s\" https://minerva.nsc.liu.se/REST/1.0/ticket/new"
+CREATE_TICKET="curl --key %s --cert %s -d \"content=%s\" https://minerva.nsc.liu.se/REST/1.0/ticket/new"
+# Test: curl --key /var/www/cgi-bin/rttag/ssl/robot-key.pem --cert /var/www/cgi-bin/rttag/ssl/robot-cert.pem --data-binary "content=id: ticket/new%0AQueue: General%0ARequestor: hzazzi@kth.se%0ASubject: Manual test%0AText: 1st line%0A 2ndline%0A 3rd line%0A" https://minerva.nsc.liu.se/REST/1.0/ticket/new
 #-----------------------------------------------------------------------
 # Functions
 #-----------------------------------------------------------------------
@@ -47,7 +47,6 @@ def removeUnwantedChars(text):
   for c in UNWANTED:
     text=text.replace(c,'')
   return text
-
 #-----------------------------------------------------------------------
 def isnumeric(s):
   try:
@@ -79,9 +78,9 @@ def setKeywordsFromText(data,jsondata,type_array):
 def reformatSendData(data):
   indata=""
   for key, value in data.items():
-    indata += key + ": " + value + "\n"
-  return indata
-  #return urllib.quote_plus(indata)
+    indata += key + ": " + value + "%0A"
+  #return indata
+  return urllib.quote_plus(indata)
 #-----------------------------------------------------------------------
 # Main
 #-----------------------------------------------------------------------
@@ -106,7 +105,7 @@ try:
     data['CF.{Keywords}'] += "," + str("category=" + form.getvalue('id_category_type'))
   if not form.getvalue('id_centre_resource').startswith('('):
     data['CF.{Keywords}'] += "," + str("resource=" + form.getvalue('id_centre_resource'))
-  data['Text'] = form.getvalue('id_description').replace("\n","<br>")
+  data['Text'] = form.getvalue('id_description').replace("\n","%0A ")
   setKeywordsFromText(data,jsondata,"problem_type")
   setKeywordsFromText(data,jsondata,"centre_resource")
   setKeywordsFromText(data,jsondata,"category_type")
