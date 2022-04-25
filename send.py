@@ -117,12 +117,7 @@ try:
     "/var/www/cgi-bin/rttag/ssl/robot-key.pem",
     "/var/www/cgi-bin/rttag/ssl/robot-cert.pem",
     indata)).read()
-
-  print(indata)
-  print("-----")
-  print(output)
-  
-  #print(template('redirect.tpl',text=output))  
+  print(template('redirect.tpl',text=output))  
   out_array=output.lower().split(" ")
   ticketn=out_array[out_array.index("ticket")+1]
 
